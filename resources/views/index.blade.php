@@ -12,8 +12,14 @@
                         {{ $links[$i]['Title'] }}
 
                         <a class="edit" href="dashboard/{{ $links[$i]['pos'] }}/edit"><i class="fas fa-edit"></i></a>
-                        <a class="delete" href=""><i class="fas fa-trash"></i></a>
 
+                        {{ Form::open(array('route' => array('dashboard.destroy', $links[$i]['pos']), 'method' => 'delete')) }}
+                            <span class="delete">
+                                <button>
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </span>
+                        {{ Form::close() }}
                     </div>
 
                 </a>

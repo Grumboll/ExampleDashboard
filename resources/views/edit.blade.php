@@ -5,14 +5,15 @@
 <div class="wrap">
     <div class="create">
         {{ Form::open(array('route' => array('dashboard.update', $link['pos']), 'method' => 'put')) }}
-            <input type="hidden" name="pos" value="{{ $link['pos'] }}">
-            <label for="Title"><b>Title:</b></label>
-            <input class="inputs" required type="text" name="Title" id="Title" value="{{ $link['Title'] }}"><br><br>
 
-            <label for="Link"><b>Link:</b></label>
-            <input class="inputs" required type="url" name="Link" id="Link" value="{{ $link['Link'] }}"><br><br>
+            {{ Form::hidden('pos', $link['pos']) }}
+            {{ Form::label('Title', 'Title') }}
+            {{ Form::text('Title', $link['Title'], ['class' => 'inputs', 'required']) }}<br><br>
 
-            <label for="Color"><b>Color:</b></label>
+            {{ Form::label('Link', 'Link') }}
+            {{ Form::url('Link', $link['Link'], ['class' => 'inputs', 'required']) }}<br><br>
+
+            {{ Form::label('Color', 'Color') }}
 
             {{ Form::select
                 (
@@ -33,7 +34,7 @@
             }}
             <br><br>
 
-            <input class="button" type="submit" value="Submit">
+            {{ Form::submit('Submit', ['class' => 'button'])}}
 
 
         {{ Form::close() }}

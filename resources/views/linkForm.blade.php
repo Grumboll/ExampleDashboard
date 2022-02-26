@@ -5,14 +5,16 @@
 <div class="wrap">
     <div class="create">
         {{ Form::open(array('route' => 'dashboard.store')) }}
-            <input type="hidden" name="pos" value="{{ $pos }}">
-            <label for="Title"><b>Title:</b></label>
-            <input class="inputs" required type="text" name="Title" id="Title" value="{{ old('Title') }}"><br><br>
 
-            <label for="Link"><b>Link:</b></label>
-            <input class="inputs" required type="url" name="Link" id="Link" value="{{ old('Link') }}"><br><br>
+            {{ Form::hidden('pos', $pos) }}
+            {{ Form::label('Title', 'Title') }}
+            {{ Form::text('Title', null, ['class' => 'inputs', 'required']) }}<br><br>
 
-            <label for="Color"><b>Color:</b></label>
+            {{ Form::label('Link', 'Link') }}
+            {{ Form::url('Link', null, ['class' => 'inputs', 'required']) }}<br><br>
+
+            {{ Form::label('Color', 'Color') }}
+
             {{ Form::select
                 (
                     'Color',
@@ -32,7 +34,7 @@
             }}
             <br><br>
 
-            <input class="button" type="submit" value="Submit">
+            {{ Form::submit('Submit', ['class' => 'button'])}}
 
 
         {{ Form::close() }}

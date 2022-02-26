@@ -12,7 +12,7 @@
     <header>
         <div class="headerDiv">
             <a href="/dashboard">
-                <img src="{{ asset("storage/shkolo-logo.png") }}" alt="Shkolo Logo">
+                <img src="{{ asset("images/shkolo-logo.png") }}" alt="Shkolo Logo">
             </a>
         </div>
     </header>

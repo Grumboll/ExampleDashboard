@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+}
+.headerDiv{
+    background-color: #3f3fb3;
+}
+.buttonGrid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px;
+}
+.btncell {
+    flex: 0 0 29%;
+    height: 225px;
+    margin: 0 10px 40px 10px;
+    border: black 5px solid;
+}
+.btncell div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 225px;
+}
+.btncell div:hover {
+    background-color: rgb(230, 230, 230);
+}
+.create{
+    margin: 25px;
+    display: block;
+
+}
+.wrap{
+    display: flex;
+    justify-content: center;
+}
+.wrap label {
+    float: left;
+    width: 50px;
+    padding-right: 10px;
+}
+.inputs{
+    box-sizing: border-box;
+    min-width: 175px;
+    border-radius: 5px;
+    border:2px solid rgb(27, 27, 27);
+}
+.button{
+    min-width: 150px;
+
+}
+

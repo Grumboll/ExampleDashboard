@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('Dashboard', "App\Http\Controllers\DashboardController");
-Route::get('/dashboard', function () {
-    return redirect('Dashboard');
+Route::resource('/dashboard', "App\Http\Controllers\DashboardController")->only(['index', 'store', 'edit', 'update', 'destroy']);
+Route::get('/', function () {
+    return redirect('dashboard');
 });
-
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/dashboard/{pos}', [
+    "uses" => 'App\Http\Controllers\DashboardController@create',
+    "as" => 'position'
+]);
 
 

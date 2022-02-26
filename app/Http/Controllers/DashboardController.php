@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidationRequest;
+use App\Models\LinkInfo;
 
 
 class DashboardController extends Controller
@@ -15,7 +16,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view("index");
+        $links = LinkInfo::all()->keyBy('pos')->toArray();
+        return view("index")->with('links', $links);
     }
 
     /**
@@ -23,9 +25,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($pos)
     {
-        return view("linkForm");
+        return view("linkForm")->with('pos', $pos);
     }
 
     /**
@@ -36,7 +38,10 @@ class DashboardController extends Controller
      */
     public function store(ValidationRequest $request)
     {
-
+        $link = new LinkInfo($request->only(['Title', 'Link', 'Color', 'pos']));
+        if($link->save()){
+            return redirect("/dashboard");
+        }
     }
 
     /**
@@ -56,9 +61,10 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($pos)
     {
-        //
+        $link = LinkInfo::where('pos', $pos)->first();
+        return view('edit')->with('link', $link);
     }
 
     /**
@@ -68,9 +74,16 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $pos)
     {
 
+        $link = LinkInfo::where('pos', $pos)->first();
+        $link->Title = $request->input('Title');
+        $link->Link = $request->input('Link');
+        $link->Color = $request->input('Color');
+        if($link->save()){
+            return redirect("/dashboard");
+        }
     }
 
     /**

@@ -13,18 +13,26 @@
             <input class="inputs" required type="url" name="Link" id="Link" value="{{ old('Link') }}"><br><br>
 
             <label for="Color"><b>Color:</b></label>
-            <select class="inputs" required name="Color" id="Color">
-                <option value="#ed493e" style="color: #ed493e">Red</option>
-                <option value="#40de40" style="color: #40de40">Green</option>
-                <option value="#5062eb" style="color: #5062eb">Blue</option>
-                <option value="#a2a4b0" style="color: #a2a4b0">Gray</option>
-                <option value="#18181c" style="color: #18181c">Black</option>
-                <option value="#8738a1" style="color: #8738a1">Purple</option>
-                <option value="#fa8d20" style="color: #fa8d20">Orange</option>
-                <option value="#f7ee36" style="color: #f7ee36">Yellow</option>
-              </select><br><br>
+            {{ Form::select
+                (
+                    'Color',
+                    [
+                        '#ed493e' => 'Red',
+                        '#40de40' => 'Green',
+                        '#5062eb' => 'Blue',
+                        '#a2a4b0' => 'Gray',
+                        '#18181c' => 'Black',
+                        '#8738a1' => 'Purple',
+                        '#fa8d20' => 'Orange',
+                        '#f7ee36' => 'Yellow',
+                    ],
+                    null,
+                    ['class' => 'inputs', 'required']
+                )
+            }}
+            <br><br>
 
-              <input class="button" type="submit" value="Submit">
+            <input class="button" type="submit" value="Submit">
 
 
         {{ Form::close() }}
